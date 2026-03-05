@@ -131,6 +131,21 @@ tests/              # Tests e2e
 
 ---
 
+## Documentación Técnica
+
+La documentación detallada con diagramas se encuentra en la carpeta [`docs/`](./docs/):
+
+| Archivo | Descripción |
+|---|---|
+| [01-arquitectura.md](./docs/01-arquitectura.md) | Visión general del sistema — diagrama de arquitectura (Mermaid flowchart) |
+| [02-comunicacion-microservicios.md](./docs/02-comunicacion-microservicios.md) | Mapa completo de comunicación TCP y tabla de message patterns |
+| [03-diagramas-secuencia.md](./docs/03-diagramas-secuencia.md) | Diagramas UML de secuencia: login, checkout, carrito, storage |
+| [04-uml-clases.md](./docs/04-uml-clases.md) | Diagrama de clases UML: entidades, DTOs y módulos NestJS |
+| [05-base-de-datos.md](./docs/05-base-de-datos.md) | Diagrama ER completo de la base de datos PostgreSQL |
+| [architecture.excalidraw](./docs/architecture.excalidraw) | Diagrama visual interactivo (abrir con extensión Excalidraw o excalidraw.com) |
+
+---
+
 ## Licencia
 
 MIT
