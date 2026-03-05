@@ -1,0 +1,149 @@
+version: "3.8"
+
+# ─── Red interna compartida ────────────────────────────────────────────────────
+networks:
+  backend:
+    driver: bridge
+
+# ─── Servicios ────────────────────────────────────────────────────────────────
+services:
+
+  # ── API Gateway (único servicio expuesto al exterior) ──────────────────────
+  gateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: gateway
+    container_name: ecommerce-gateway
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      LOGS_ROOT: /app/logs
+      # Hosts de los microservicios en la red Docker
+      AUTH_SERVICE_HOST: auth
+      PRODUCTS_SERVICE_HOST: products
+      ORDERS_SERVICE_HOST: orders
+      CUSTOMERS_SERVICE_HOST: customers
+      CART_SERVICE_HOST: cart
+      ANALYTICS_SERVICE_HOST: analytics
+      STORAGE_SERVICE_HOST: storage
+    depends_on:
+      - auth
+      - products
+      - orders
+      - customers
+      - cart
+      - analytics
+      - storage
+    networks:
+      - backend
+
+  # ── Auth ───────────────────────────────────────────────────────────────────
+  auth:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: auth
+    container_name: ecommerce-auth
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NODE_ENV: production
+    networks:
+      - backend
+
+  # ── Products ───────────────────────────────────────────────────────────────
+  products:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: products
+    container_name: ecommerce-products
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NODE_ENV: production
+    networks:
+      - backend
+
+  # ── Orders ─────────────────────────────────────────────────────────────────
+  orders:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: orders
+    container_name: ecommerce-orders
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NODE_ENV: production
+    networks:
+      - backend
+
+  # ── Customers ──────────────────────────────────────────────────────────────
+  customers:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: customers
+    container_name: ecommerce-customers
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NODE_ENV: production
+    networks:
+      - backend
+
+  # ── Cart ───────────────────────────────────────────────────────────────────
+  cart:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: cart
+    container_name: ecommerce-cart
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NODE_ENV: production
+    networks:
+      - backend
+
+  # ── Analytics ──────────────────────────────────────────────────────────────
+  analytics:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: analytics
+    container_name: ecommerce-analytics
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NODE_ENV: production
+    networks:
+      - backend
+
+  # ── Storage ────────────────────────────────────────────────────────────────
+  storage:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SERVICE: storage
+    container_name: ecommerce-storage
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NODE_ENV: production
+    networks:
+      - backend

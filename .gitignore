@@ -1,0 +1,51 @@
+# ─── Dependencias ────────────────────────────────────────────────────────────
+/node_modules
+
+# ─── Build / salida compilada ─────────────────────────────────────────────────
+/dist
+*.tsbuildinfo
+*.js.map
+
+# ─── Cobertura de tests ───────────────────────────────────────────────────────
+coverage/
+.jest-cache/
+junit.xml
+
+# ─── Logs de ejecución ────────────────────────────────────────────────────────
+logs/
+!logs/.gitkeep
+
+# ─── Variables de entorno ─────────────────────────────────────────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+!.env.example
+
+# ─── Temporales ───────────────────────────────────────────────────────────────
+tmp/
+temp/
+*.pid
+*.seed
+
+# ─── Logs ────────────────────────────────────────────────────────────────────
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ─── SO ──────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── IDE / editores ──────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+
+
