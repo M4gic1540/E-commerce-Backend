@@ -8,9 +8,17 @@ import { TransactionInterceptor } from "./interceptors/transaction.interceptor";
 async function bootstrap() {
   const app = await NestFactory.create(GatewayModule);
 
+  const exactOrigins = process.env.CORS_ORIGIN
+    ? process.env.CORS_ORIGIN.split(',').map((o) => o.trim())
+    : [];
+  const originPatterns = process.env.CORS_ORIGIN_PATTERN
+    ? process.env.CORS_ORIGIN_PATTERN.split(',').map((p) => new RegExp(p.trim()))
+    : [];
+  const allowedOrigins = [...exactOrigins, ...originPatterns];
+
   app.enableCors({
-    origin: process.env.CORS_ORIGIN
-      ? process.env.CORS_ORIGIN.split(',')
+    origin: allowedOrigins.length
+      ? allowedOrigins
       : [/^http:\/\/localhost:\d+$/],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
