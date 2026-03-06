@@ -2,9 +2,6 @@
   builder        = "DOCKERFILE"
   dockerfilePath = "Dockerfile"
 
-  [build.dockerBuildArgs]
-    SERVICE = "products"
-
 [deploy]
   startCommand            = "node dist/apps/products/main.js"
   restartPolicyType       = "ON_FAILURE"

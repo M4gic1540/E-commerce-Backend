@@ -2,9 +2,6 @@
   builder        = "DOCKERFILE"
   dockerfilePath = "Dockerfile"
 
-  [build.dockerBuildArgs]
-    SERVICE = "gateway"
-
 [deploy]
   startCommand            = "node dist/apps/gateway/main.js"
   healthcheckPath         = "/api/health"

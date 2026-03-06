@@ -2,9 +2,6 @@
   builder        = "DOCKERFILE"
   dockerfilePath = "Dockerfile"
 
-  [build.dockerBuildArgs]
-    SERVICE = "analytics"
-
 [deploy]
   startCommand            = "node dist/apps/analytics/main.js"
   restartPolicyType       = "ON_FAILURE"

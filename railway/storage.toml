@@ -2,9 +2,6 @@
   builder        = "DOCKERFILE"
   dockerfilePath = "Dockerfile"
 
-  [build.dockerBuildArgs]
-    SERVICE = "storage"
-
 [deploy]
   startCommand            = "node dist/apps/storage/main.js"
   restartPolicyType       = "ON_FAILURE"
