@@ -1,0 +1,11 @@
+[build]
+  builder     = "dockerfile"
+  dockerfilePath = "Dockerfile"
+
+  [build.args]
+    SERVICE = "auth"
+
+[deploy]
+  startCommand          = "node dist/apps/auth/main.js"
+  restartPolicyType     = "on_failure"
+  restartPolicyMaxRetries = 5

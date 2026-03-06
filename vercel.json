@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/index.ts",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": [
+          "apps/gateway/src/**",
+          "apps/auth/src/**",
+          "apps/products/src/**",
+          "apps/orders/src/**",
+          "apps/customers/src/**",
+          "apps/cart/src/**",
+          "apps/analytics/src/**",
+          "apps/storage/src/**",
+          "libs/shared/src/**"
+        ]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "api/index.ts"
+    }
+  ]
+}

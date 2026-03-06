@@ -1,0 +1,11 @@
+[build]
+  builder     = "dockerfile"
+  dockerfilePath = "Dockerfile"
+
+  [build.args]
+    SERVICE = "cart"
+
+[deploy]
+  startCommand          = "node dist/apps/cart/main.js"
+  restartPolicyType     = "on_failure"
+  restartPolicyMaxRetries = 5

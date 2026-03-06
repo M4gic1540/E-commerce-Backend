@@ -1,0 +1,11 @@
+[build]
+  builder     = "dockerfile"
+  dockerfilePath = "Dockerfile"
+
+  [build.args]
+    SERVICE = "storage"
+
+[deploy]
+  startCommand          = "node dist/apps/storage/main.js"
+  restartPolicyType     = "on_failure"
+  restartPolicyMaxRetries = 5
