@@ -24,14 +24,15 @@ services:
       NODE_ENV: production
       PORT: 3000
       LOGS_ROOT: /app/logs
-      # Hosts de los microservicios en la red Docker
-      AUTH_SERVICE_HOST: auth
-      PRODUCTS_SERVICE_HOST: products
-      ORDERS_SERVICE_HOST: orders
-      CUSTOMERS_SERVICE_HOST: customers
-      CART_SERVICE_HOST: cart
-      ANALYTICS_SERVICE_HOST: analytics
-      STORAGE_SERVICE_HOST: storage
+      # Hosts de los microservicios (en Docker bridge usan el nombre del servicio;
+      # en Railway se inyectan como <nombre>.railway.internal)
+      AUTH_SERVICE_HOST: ${AUTH_SERVICE_HOST:-auth}
+      PRODUCTS_SERVICE_HOST: ${PRODUCTS_SERVICE_HOST:-products}
+      ORDERS_SERVICE_HOST: ${ORDERS_SERVICE_HOST:-orders}
+      CUSTOMERS_SERVICE_HOST: ${CUSTOMERS_SERVICE_HOST:-customers}
+      CART_SERVICE_HOST: ${CART_SERVICE_HOST:-cart}
+      ANALYTICS_SERVICE_HOST: ${ANALYTICS_SERVICE_HOST:-analytics}
+      STORAGE_SERVICE_HOST: ${STORAGE_SERVICE_HOST:-storage}
     depends_on:
       - auth
       - products

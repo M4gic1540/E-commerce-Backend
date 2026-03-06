@@ -1,0 +1,11 @@
+[build]
+  builder     = "dockerfile"
+  dockerfilePath = "Dockerfile"
+
+  [build.args]
+    SERVICE = "analytics"
+
+[deploy]
+  startCommand          = "node dist/apps/analytics/main.js"
+  restartPolicyType     = "on_failure"
+  restartPolicyMaxRetries = 5
