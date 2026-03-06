@@ -1,13 +1,13 @@
 [build]
-  builder     = "dockerfile"
+  builder        = "DOCKERFILE"
   dockerfilePath = "Dockerfile"
 
-  [build.args]
+  [build.dockerBuildArgs]
     SERVICE = "gateway"
 
 [deploy]
-  startCommand          = "node dist/apps/gateway/main.js"
-  healthcheckPath       = "/api/health"
-  healthcheckTimeout    = 300
-  restartPolicyType     = "on_failure"
+  startCommand            = "node dist/apps/gateway/main.js"
+  healthcheckPath         = "/api/health"
+  healthcheckTimeout      = 300
+  restartPolicyType       = "ON_FAILURE"
   restartPolicyMaxRetries = 5
